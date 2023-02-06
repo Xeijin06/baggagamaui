@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BaggageApp.MainPage"
+             Shell.NavBarIsVisible="False">
+    <ScrollView HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+        <Grid 
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0"
+                   Grid.RowSpan="3"
+                   Source="main_menu_bg" Aspect="AspectFill" />
+
+
+            <Image Grid.Row="0" AbsoluteLayout.LayoutFlags="All"
+                   AbsoluteLayout.LayoutBounds="0,0,1,0"
+                   Source="baggage_brand.png" Aspect="AspectFit" 
+                   HeightRequest="30"
+                   Margin="0,50,0,0" 
+                   HorizontalOptions="Center" 
+                   BackgroundColor="Transparent" />
+
+
+
+            <StackLayout Grid.Row="1"
+                         BackgroundColor="Transparent"
+                         WidthRequest="250"
+                         Margin="0"
+                         VerticalOptions="Center"
+                         Spacing="0">
+
+                <StackLayout BackgroundColor="Transparent"
+                                 Orientation="Vertical"
+                                 Margin="0,0,0,5">
+
+                    <StackLayout HorizontalOptions="FillAndExpand"
+                                     Orientation="Horizontal"
+                                     BackgroundColor="Transparent">
+
+                        <Image Aspect="AspectFit"  
+                                   WidthRequest="20"
+                                   HorizontalOptions="Start"
+                                   Source="userIcon.png" VerticalOptions="Center"  Margin="3" />
+
+                        <Entry HorizontalOptions="FillAndExpand"
+                                   x:Name="usernameXfxEntry"
+                                   VerticalOptions="End"
+                                   Placeholder="Usuario"
+                                   TextColor="White"
+                                   PlaceholderColor="White"
+                                   Margin="5,0,0,0"
+                                   Text="{Binding User, Mode=TwoWay}" />
+                    </StackLayout>
+
+                    <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="End"
+                                 HeightRequest="2" 
+                                 BackgroundColor="White"
+                                 Margin="0"/>
+
+                </StackLayout>
+
+
+                <StackLayout BackgroundColor="Transparent"
+                                 Orientation="Vertical"
+                                 Margin="0,0,0,10">
+
+                    <StackLayout HorizontalOptions="FillAndExpand"
+                                 Orientation="Horizontal"
+                                 BackgroundColor="Transparent">
+
+                        <Image Aspect="AspectFit"  WidthRequest="20"
+                                   HorizontalOptions="Start"
+                                   Source="pwdIcon.png" VerticalOptions="Center"  Margin="3" />
+
+                        <Entry HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="End"
+                                   Placeholder="Contraseña"
+                                   TextColor="White"
+                                   PlaceholderColor="White"
+                                   Margin="5,0,0,0"
+                                   IsPassword="True"   MaxLength="50"
+                                   Text="{Binding Password, Mode=TwoWay}" />
+
+                    </StackLayout>
+
+                    <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="End"
+                                 HeightRequest="2" 
+                                 BackgroundColor="White"
+                                 Margin="0"/>
+                </StackLayout>
+
+
+                <StackLayout Padding="50,5,50,10" 
+                                 BackgroundColor="Transparent" 
+                                 HorizontalOptions="FillAndExpand" 
+                                 VerticalOptions="Center">
+
+                    <Button
+                Text="Click me"
+                HorizontalOptions="Center">
+                        <Button.Shadow>
+                            <Shadow Brush="Purple"
+                            Radius="40"
+                            Offset="20,20"
+                            Opacity="0.8"/>
+                        </Button.Shadow>
+                    </Button>
+
+                    <Frame x:Name="loginFrame" HasShadow="False"  HorizontalOptions="FillAndExpand" VerticalOptions="Center" BackgroundColor="#0066cc" CornerRadius="5" Padding="0,0,0,0" Margin="0,10,0,10">
+                        <StackLayout x:Name="loginButton"  BackgroundColor="{Binding LoginButtonBackgroundColor, Mode=TwoWay}" InputTransparent="{Binding LoginButtonTransparent, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LoginCommand}" />
+                            </StackLayout.GestureRecognizers>
+                            <Label x:Name="loginButtonLabel" Text="LOGIN" FontSize="20" TextColor="{Binding LogintButtonTextColor, Mode=TwoWay}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                        </StackLayout>
+                    </Frame>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <StackLayout Grid.Row="2" 
+                         HorizontalOptions="FillAndExpand"
+                         WidthRequest="220"
+                         Margin="0,0,0,15">
+                <Image Aspect="AspectFit"  Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="4"
+                            HorizontalOptions="Center"
+                            Source="copa_logo.png" VerticalOptions="End" HeightRequest="56" Margin="0,0,0,10"  />
+
+                <Label FontSize="13" Text="Copyright © 2018 Copa Airlines, Incorporated. All rights reserved." 
+                       TextColor="White" HorizontalTextAlignment="Center"
+                       VerticalOptions="Center" HorizontalOptions="Center" />
+
+               
+            </StackLayout>
+
+
+
+            <ContentView x:Name="actIndBackground"
+                               BackgroundColor="#dbdad8" Opacity="0.5"
+                               Grid.Row="0"
+                               Grid.RowSpan="3"
+                               IsVisible="{Binding IsBusy}"></ContentView>
+            
+            <ActivityIndicator IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"
+                               Grid.Row="0"
+                               Grid.RowSpan="3"
+                               WidthRequest="70"
+                               HeightRequest="70"
+                               Color="#Ffcc00"/>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>

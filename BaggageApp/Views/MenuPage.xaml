@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BaggageApp.Views.MenuPage"
+             Title="MenuPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="sectionTitleLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+            </Style>
+            <Style x:Key="menuTitleLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="#333333" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+            </Style>
+            <Style x:Key="headerSubTitleDescriptionLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="#ffffff" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+            </Style>
+            <Style x:Key="headerButtonTitleLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="#ffffff" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <AbsoluteLayout BackgroundColor="White">
+        
+        <Frame Margin="0" Padding="0" HasShadow="False"
+                   AbsoluteLayout.LayoutFlags="All"
+                            AbsoluteLayout.LayoutBounds="0,0,1,1"
+               IsVisible="{Binding ShowSearchBoxStack, Mode=TwoWay}">
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#0082D5"
+                          Offset="0.1" />
+                    <GradientStop Color="#8D2DAE"
+                          Offset="1.0" />
+                </LinearGradientBrush>
+            </Frame.Background>
+        </Frame>
+        <StackLayout Padding="10,0,10,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                     AbsoluteLayout.LayoutFlags="All"
+                            AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <StackLayout   Spacing="0" Margin="0,0,0,0" 
+                             HorizontalOptions="FillAndExpand" HeightRequest="110" >
+                <StackLayout Spacing="0"  WidthRequest="50" HeightRequest="50" Padding="5,5,5,5" Margin="0,0,10,0"  HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Orientation="Vertical"
+                                             >
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OnTouchHandlerCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Image Aspect="AspectFit" WidthRequest="30"  HorizontalOptions="Center"
+                            Source="menu.png" VerticalOptions="CenterAndExpand"  Margin="0,0,0,0" />
+                </StackLayout>
+            </StackLayout>
+            <!--Button
+                Text="Click me"
+                HorizontalOptions="Center">
+                <Button.Shadow>
+                    <Shadow Brush="Purple"
+                            Radius="40"
+                            Offset="20,20"
+                            Opacity="0.8"/>
+                </Button.Shadow>
+            </Button>
+            <BoxView HeightRequest="60" WidthRequest="60" Color="Red" HorizontalOptions="Center" VerticalOptions="Center" Margin="10">
+                <BoxView.Shadow>
+                    <Shadow Brush="Black"
+                                            Offset="40,40"
+                                            Radius="20"
+                                            Opacity="0.8" />
+                </BoxView.Shadow>
+            </BoxView>
+            <Frame BackgroundColor="Transparent" HasShadow="False"> 
+            </Frame-->
+            <StackLayout    Spacing="0" Margin="0,0,0,0"
+                              HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <StackLayout HorizontalOptions="Fill" IsVisible="{Binding ShowSearchBoxStack, Mode=TwoWay}" BackgroundColor="Transparent" Margin="10,0,10,0">
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout Padding="30,20,20,0" VerticalOptions="Start" HorizontalOptions="Center">
+                            <Image Aspect="AspectFit" HeightRequest="100" Source="regiconwhite.png" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                        </StackLayout>
+                        <StackLayout Padding="0,18,0,0" Margin="0,0,0,0"  VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand" >
+                            <Label Text="Registrar AHL" Style="{StaticResource sectionTitleLabel}" ></Label>
+                            <Label Text="Crear caso de equipaje rezagado"  Style="{StaticResource headerSubTitleDescriptionLabel}" ></Label>
+                        </StackLayout>
+                        <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="End" Margin="12,25,12,0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnTouchHandlerCommand}" CommandParameter="close_search_box"/>
+                            </StackLayout.GestureRecognizers>
+                            <Image Aspect="AspectFit" WidthRequest="22"  HorizontalOptions="End"  Source="exit_icon.png"
+                                       VerticalOptions="Start"  Margin="0,0,0,0" />
+
+                        </StackLayout>
+                    </StackLayout>
+                    <FlexLayout  VerticalOptions="Start" HorizontalOptions="FillAndExpand" Margin="20,0,20,50"
+                                 Wrap="Wrap">
+
+                        <Frame HasShadow="False" HeightRequest="44" Padding="5" Margin="0,5,5,5" BackgroundColor="Transparent">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnTouchHandlerCommand}" />
+                            </Frame.GestureRecognizers>
+                            <StackLayout Orientation="Horizontal" Padding="5" Margin="0" Spacing="8">
+                                <Image Source="scanicon.png" WidthRequest="23" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                <Label Text="SCAN" Style="{StaticResource headerButtonTitleLabel}" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame HasShadow="False" HeightRequest="44" Padding="5" Margin="0,5,0,5" BackgroundColor="Transparent">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnTouchHandlerCommand}" />
+                            </Frame.GestureRecognizers>
+                            <StackLayout Orientation="Horizontal" Padding="5" Margin="0" Spacing="8">
+                                <Image Source="colicon.png" WidthRequest="23" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                <Label Text="NÚMERO DE COLILLA" Style="{StaticResource headerButtonTitleLabel}" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame HasShadow="False" HeightRequest="44" Padding="5" Margin="0,5,0,5" BackgroundColor="Transparent">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnTouchHandlerCommand}" />
+                            </Frame.GestureRecognizers>
+                            <StackLayout Orientation="Horizontal" Padding="5" Margin="0" Spacing="8">
+                                <Image Source="listIcon.png" WidthRequest="23" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                <Label Text="LISTA DE VUELOS" Style="{StaticResource headerButtonTitleLabel}" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </StackLayout>
+                        </Frame>
+
+                    </FlexLayout>
+                    <StackLayout  Orientation="Vertical" HorizontalOptions="FillAndExpand" IsVisible="{Binding ShowSearchTagEntry, Mode=TwoWay}" >
+                        <Grid   RowSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="20"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+
+                            <StackLayout Padding="10,5,10,0"  Orientation="Horizontal"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                 Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4">
+                                <Entry 
+                                HorizontalOptions="FillAndExpand"
+                            x:Name="tagNumberXfxEntry"
+                            VerticalOptions="End"
+                            Placeholder="Ingrese número de colilla"
+                            TextColor="White"
+                            PlaceholderColor="White"
+                            Margin="75,0,0,0"
+							Text="{Binding SearchText, Mode=TwoWay}"/>
+
+                            </StackLayout>
+                            <Image Aspect="AspectFit"  WidthRequest="25" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"
+                            HorizontalOptions="Start"
+                            Source="colicon.png" VerticalOptions="Center"  Margin="40,0,3,10" />
+                            <Image Aspect="AspectFit"  WidthRequest="30" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"
+                            HorizontalOptions="End" Source="arrowricon.png" VerticalOptions="Center"  Margin="0,0,0,10">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OnTouchHandlerCommand}" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <BoxView  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" HorizontalOptions="FillAndExpand" VerticalOptions="End"
+                        HeightRequest="2" 
+                        BackgroundColor="White"
+                        Margin="0,0,0,18"></BoxView>
+                            <Label Text="CANCELAR BÚSQUEDA" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" Style="{StaticResource headerButtonTitleLabel}"
+                                   Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,5">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OnTouchHandlerCommand}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout  Spacing="0" Margin="15,0,15,0"  
+                              HorizontalOptions="FillAndExpand" >
+                    <ScrollView>
+                        <Grid HorizontalOptions="FillAndExpand"  RowSpacing="5" ColumnSpacing="5"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.50*" />
+                                <ColumnDefinition Width="0.50*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="230" />
+                                <RowDefinition Height="230" />
+                                <RowDefinition Height="230" />
+                            </Grid.RowDefinitions>
+
+                            <Frame Grid.Row="0" Grid.Column="0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"  CornerRadius="5" 
+                                   Padding="1, 1,1,1" Margin="5,5,5,5" >
+                                <Frame.Shadow>
+                                    <Shadow Brush="Black"
+                                            Offset="5,5"
+                                            Radius="90"
+                                            Opacity="0.4" />
+                                </Frame.Shadow>
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OnTouchHandlerCommand}" CommandParameter="ahl"/>
+                                </Frame.GestureRecognizers>
+                                <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical" BackgroundColor="Transparent" >
+
+                                    <StackLayout Spacing="0"  HorizontalOptions="Center" VerticalOptions="Center" Padding="0,25,0,0" >
+                                        <Image Source="ahlicon.png" WidthRequest="90" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="FillAndExpand">
+                                        <Label HorizontalTextAlignment="Center" Text="Registrar AHL" Style="{StaticResource menuTitleLabel}" ></Label>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="FillAndExpand" Padding="30,0,30,0" >
+                                        <Label HorizontalTextAlignment="Center" Text="Crear caso de equipaje rezagado" TextColor="#333333" FontSize="16"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                            <Frame Grid.Row="0" Grid.Column="1" HasShadow="True"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"  CornerRadius="5"
+                                   Padding="1,1,1,1" Margin="5,5,5,5"  >
+                                <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OnTouchHandlerCommand}" />
+                                    </StackLayout.GestureRecognizers>
+                                    <StackLayout Spacing="0"  HorizontalOptions="Center" VerticalOptions="Center" Padding="0,25,0,0" >
+                                        <Image Source="ohdicon.png" WidthRequest="90" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="FillAndExpand">
+                                        <Label HorizontalTextAlignment="Center" Text="Registrar OHD" Style="{StaticResource menuTitleLabel}" ></Label>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="FillAndExpand" Padding="30,0,30,0" >
+                                        <Label HorizontalTextAlignment="Center" Text="Crear caso de equipaje sobrante" TextColor="#333333" FontSize="16"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                            <Frame Grid.Row="1" Grid.Column="0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  BackgroundColor="White"  CornerRadius="5"
+                                   Padding="1,1,1,1" Margin="5,5,5,5" >
+                                <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OnTouchHandlerCommand}" />
+                                    </StackLayout.GestureRecognizers>
+                                    <StackLayout Spacing="0"  HorizontalOptions="Center" VerticalOptions="Center" Padding="0,25,0,0" >
+                                        <Image Source="fwdicon.png" WidthRequest="90" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="FillAndExpand">
+                                        <Label HorizontalTextAlignment="Center" Text="Enviar FWD" Style="{StaticResource menuTitleLabel}" ></Label>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="FillAndExpand" Padding="30,0,30,0" >
+                                        <Label HorizontalTextAlignment="Center" Text="Enviar equipaje al pasajero" TextColor="#333333" FontSize="16"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                            <Frame Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" CornerRadius="5"
+                                   Padding="1,1,1,1" Margin="5,5,5,5"  >
+                                <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OnTouchHandlerCommand}" />
+                                    </StackLayout.GestureRecognizers>
+                                    <StackLayout Spacing="0"  HorizontalOptions="Center" VerticalOptions="Center" Padding="0,25,0,0" >
+                                        <Image Source="dpricon.png" WidthRequest="90" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="FillAndExpand">
+                                        <Label HorizontalTextAlignment="Center" Text="Registrar DPR" Style="{StaticResource menuTitleLabel}" ></Label>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="FillAndExpand" Padding="30,0,30,0" >
+                                        <Label HorizontalTextAlignment="Center" Text="Crear caso de daños o saqueos sobre equipaje" TextColor="#333333" FontSize="16"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                            <Frame Grid.Row="2" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"  CornerRadius="5"
+                                   Padding="1,1,1,1" Margin="5,5,5,5" >
+                                <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OnTouchHandlerCommand}" />
+                                    </StackLayout.GestureRecognizers>
+                                    <StackLayout Spacing="0"  HorizontalOptions="Center" VerticalOptions="Center" Padding="0,25,0,0" >
+                                        <Image Source="rfpicon.png" WidthRequest="90" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="FillAndExpand">
+                                        <Label HorizontalTextAlignment="Center" Text="Registrar RFP" Style="{StaticResource menuTitleLabel}" ></Label>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="FillAndExpand" Padding="30,0,30,0" >
+                                        <Label HorizontalTextAlignment="Center" Text="Registrar artículos olvidados" TextColor="#333333" FontSize="16"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </ScrollView>
+                </StackLayout>
+
+            </StackLayout>
+
+        </StackLayout>
+
+    </AbsoluteLayout>
+
+</ContentPage>
